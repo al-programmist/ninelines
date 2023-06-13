@@ -5,6 +5,9 @@ let path = require('path');
 let del = require('del');
 let webpackConfig = require('./webpack.config');
 let sass = require('gulp-sass')(require('sass'));
+let woff = require('gulp-ttf2woff');
+let woff2 = require('gulp-ttf2woff2');
+let fonter = require('gulp-fonter');
 
 let emittyPug;
 let errorHandler;
@@ -109,6 +112,8 @@ gulp.task('copy', () => {
 	return gulp.src([
 		'src/resources/**/*.*',
 		'src/resources/**/.*',
+		'!src/resources/**/*.otf',
+		'!src/resources/**/*.ttf',
 		'!src/resources/**/.keep',
 	], {
 		base: 'src/resources',
@@ -118,6 +123,44 @@ gulp.task('copy', () => {
 		.pipe($.if(argv.debug, $.debug()))
 		.pipe(gulp.dest('build'));
 });
+
+gulp.task('woff', () => {
+	return gulp.src([
+		'src/resources/**/*.ttf',
+		'!src/resources/**/.keep',
+	])
+		.pipe(woff())
+		.pipe($.if(argv.debug, $.debug()))
+		.pipe(gulp.dest('src/resources'));
+});
+
+gulp.task('woff2', () => {
+	return gulp.src([
+		'src/resources/**/*.ttf',
+		'!src/resources/**/.keep',
+	])
+		.pipe(woff2())
+		.pipe($.if(argv.debug, $.debug()))
+		.pipe(gulp.dest('src/resources'));
+});
+
+gulp.task('otf2ttf', () => {
+	return gulp.src([
+		'src/resources/**/*.otf',
+		'!src/resources/**/.keep',
+	])
+		.pipe(fonter({
+			formats: ['ttf'],
+		}))
+		.pipe($.if(argv.debug, $.debug()))
+		.pipe(gulp.dest('src/resources'));
+});
+
+gulp.task('fonts', gulp.series(
+	'otf2ttf',
+	'woff',
+	'woff2',
+));
 
 gulp.task('images', () => {
 	return gulp.src('src/images/**/*.*')
@@ -193,20 +236,21 @@ gulp.task('pug', () => {
 	}
 
 	return new Promise((resolve, reject) => {
-		emittyPug.scan(global.emittyPugChangedFile).then(() => {
-			gulp.src('src/*.pug')
-				.pipe($.plumber({
-					errorHandler,
-				}))
-				.pipe(emittyPug.filter(global.emittyPugChangedFile))
-				.pipe($.if(argv.debug, $.debug()))
-				.pipe($.pug({
-					pretty: argv.minifyHtml ? false : '\t',
-				}))
-				.pipe(gulp.dest('build'))
-				.on('end', resolve)
-				.on('error', reject);
-		});
+		emittyPug.scan(global.emittyPugChangedFile)
+			.then(() => {
+				gulp.src('src/*.pug')
+					.pipe($.plumber({
+						errorHandler,
+					}))
+					.pipe(emittyPug.filter(global.emittyPugChangedFile))
+					.pipe($.if(argv.debug, $.debug()))
+					.pipe($.pug({
+						pretty: argv.minifyHtml ? false : '\t',
+					}))
+					.pipe(gulp.dest('build'))
+					.on('end', resolve)
+					.on('error', reject);
+			});
 	});
 });
 
@@ -241,7 +285,8 @@ gulp.task('scss', () => {
 		}))
 		.pipe($.if(argv.debug, $.debug()))
 		.pipe($.sourcemaps.init())
-		.pipe(sass().on('error', sass.logError))
+		.pipe(sass()
+			.on('error', sass.logError))
 		.pipe($.postcss(postcssPlugins))
 		.pipe($.sourcemaps.write('.'))
 		.pipe(gulp.dest('build/css'));
@@ -405,11 +450,20 @@ gulp.task('zip', () => {
 	// eslint-disable-next-line global-require
 	let name = require('./package').name;
 	let now = new Date();
-	let year = now.getFullYear().toString().padStart(2, '0');
-	let month = (now.getMonth() + 1).toString().padStart(2, '0');
-	let day = now.getDate().toString().padStart(2, '0');
-	let hours = now.getHours().toString().padStart(2, '0');
-	let minutes = now.getMinutes().toString().padStart(2, '0');
+	let year = now.getFullYear()
+		.toString()
+		.padStart(2, '0');
+	let month = (now.getMonth() + 1).toString()
+		.padStart(2, '0');
+	let day = now.getDate()
+		.toString()
+		.padStart(2, '0');
+	let hours = now.getHours()
+		.toString()
+		.padStart(2, '0');
+	let minutes = now.getMinutes()
+		.toString()
+		.padStart(2, '0');
 
 	return gulp.src([
 		'build/**',
