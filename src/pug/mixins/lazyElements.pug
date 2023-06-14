@@ -3,7 +3,7 @@
 		srcset: `${baseDir}images/path@2x.type 2x`,
 		alt: '',
 		appear: false,
-	}).class(attrs)
+//-	}).class(attrs)
 mixin lazyImage(data)
 	img.image.js-lazy(
 		draggable="false"
@@ -22,13 +22,13 @@ mixin lazyImage(data)
 			src: 'photo.jpg',
 			alt: '',
 			appear: false,
-		}, [
+//-		}, [
 				{
 					srcset: `${baseDir}images/path.type 1x, ${baseDir}images/path@2x.type 2x`,
 					media: '(min-width: 320px)',
 				}
-			]
-		).class(attrs)
+//-			]
+//-		).class(attrs)
 mixin lazyPicture(data, source)
 	picture.lozad.js-lazy(
 		data-iesrc=data.src
@@ -63,7 +63,7 @@ mixin lazyBackground(url)
 				type: 'video/{type}',
 			}
 		]
-	}).class(attrs)
+//-	}).class(attrs)
 mixin lazyVideo(data)
 	video.js-lazy(data-poster=data.poster)&attributes(attributes)
 		each src in data.source

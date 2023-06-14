@@ -8,6 +8,8 @@ let sass = require('gulp-sass')(require('sass'));
 let woff = require('gulp-ttf2woff');
 let woff2 = require('gulp-ttf2woff2');
 let fonter = require('gulp-fonter');
+let realFavicon = require('gulp-real-favicon');
+let fs = require('fs');
 
 let emittyPug;
 let errorHandler;
@@ -80,6 +82,46 @@ if (argv.throwErrors) {
 	errorHandler = null;
 }
 
+let faviconDataFile = 'src/resources/favicons/favicon.json';
+let faviconConfig = {
+	masterPicture: 'src/resources/favicons/favicon-master.png',
+	dest: 'src/resources/favicons/',
+	iconsPath: '/favicons/',
+	design: {
+		ios: {
+			pictureAspect: 'backgroundAndMargin',
+			backgroundColor: '#ffffff',
+			margin: '21%',
+		},
+		desktopBrowser: {},
+		windows: {
+			pictureAspect: 'whiteSilhouette',
+			backgroundColor: '#da532c',
+			onConflict: 'override',
+		},
+		androidChrome: {
+			pictureAspect: 'shadow',
+			themeColor: '#ffffff',
+			manifest: {
+				name: 'Ninelines',
+				display: 'browser',
+				orientation: 'notSet',
+				onConflict: 'override',
+			},
+		},
+		safariPinnedTab: {
+			pictureAspect: 'silhouette',
+			themeColor: '#5bbad5',
+		},
+	},
+	settings: {
+		compression: 5,
+		scalingAlgorithm: 'Mitchell',
+		errorOnImageTooSmall: false,
+	},
+	markupFile: faviconDataFile,
+};
+
 function svgoConfig(minify = argv.minifySvg) {
 	return (file) => {
 		const filename = path.basename(file.relative, path.extname(file.relative));
@@ -108,12 +150,30 @@ function svgoConfig(minify = argv.minifySvg) {
 	};
 }
 
+gulp.task('favupdate', (done) => {
+	let currentVersion = JSON.parse(fs.readFileSync(faviconDataFile)).version;
+	realFavicon.checkForUpdates(currentVersion, (err) => {
+		if (err) {
+			throw err;
+		}
+	});
+	done();
+});
+
+gulp.task('favgenerate', (done) => {
+	realFavicon.generateFavicon(faviconConfig, () => {
+		done();
+	});
+});
+
 gulp.task('copy', () => {
 	return gulp.src([
 		'src/resources/**/*.*',
 		'src/resources/**/.*',
 		'!src/resources/**/*.otf',
 		'!src/resources/**/*.ttf',
+		'!src/resources/**/*.json',
+		'!src/resources/favicons/favicon-master.png',
 		'!src/resources/**/.keep',
 	], {
 		base: 'src/resources',

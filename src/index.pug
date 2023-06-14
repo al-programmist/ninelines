@@ -4,16 +4,38 @@ prepend vars
 	//-
 
 append vars
-	//-
+	- title = 'Тестовое задание на должность Frontend-разработчика. Выполнил Гузяев Александр'
+	- description = 'Рассказ о разработчике, его способностях, навыках и умениях'
+	- meta.keywords = ['тест', 'задание', 'должность', 'разработчик', 'frontend', 'Гузяев', 'Александр']
+	- meta.description = 'Рассказ о разработчике, его способностях, навыках и умениях'
+	- meta.themeColor = '#ffffff'
+	- meta.msapplicationTileColor = '#fcded1'
+	- meta.msapplicationTileImage = 'favicons/mstile-144x144.png'
+	- link.appleTouchIcon57x57 = 'favicons/apple-touch-icon-57x57.png'
+	- link.appleTouchIcon60x60 = 'favicons/apple-touch-icon-60x60.png'
+	- link.appleTouchIcon72x72 = 'favicons/apple-touch-icon-72x72.png'
+	- link.appleTouchIcon76x76 = 'favicons/apple-touch-icon-76x76.png'
+	- link.appleTouchIcon114x114 = 'favicons/apple-touch-icon-114x114.png'
+	- link.appleTouchIcon120x120 = 'favicons/apple-touch-icon-120x120.png'
+	- link.appleTouchIcon144x144 = 'favicons/apple-touch-icon-144x144.png'
+	- link.appleTouchIcon152x152 = 'favicons/apple-touch-icon-152x152.png'
+	- link.appleTouchIcon180x180 = 'favicons/apple-touch-icon-180x180.png'
+	- link.icon = 'favicons/favicon-32x32.png'
+	- link.icon16x16 = 'favicons/favicon-16x16.png'
+	- link.icon32x32 = 'favicons/favicon-32x32.png'
+	- link.icon192x192 = 'favicons/android-chrome-192x192.png'
+	- link.icon194x194 = 'favicons/favicon-194x194.png'
+	- link.manifest = 'favicons/site.webmanifest'
+	- body.classList = ['index']
 
 block content
-	//- include pug/data
+	include pug/data
 
-	//- .site
-	//- 	include pug/components/header
+	.site
+		include pug/components/header
 
-	//- 	include pug/pages/home
+		//- include pug/pages/home
 
-	//- 	include pug/components/footer
+		include pug/components/footer
 
-	//- include pug/components/analytics
+		//include pug/components/analytics
