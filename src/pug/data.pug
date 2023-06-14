@@ -1,38 +1,65 @@
 -
 	const data = {
 		header: {
-			links: {
-				logo: 'https://ninelines.agency/',
+			logo: {
+				src: '/',
+				title: 'Логотип разработчика'
 			},
 			menu: [
 				{
 					url: '#hello',
-					name: 'Ну привет'
+					name: 'Резюме',
+					title: 'Резюме'
 				},
 				{
-					url: '#necessarily',
-					name: 'Обязательно к прочтению'
+					url: '#about',
+					name: 'О себе',
+					title: 'О себе'
 				},
 				{
-					url: '#bye',
-					name: 'И пока'
+					url: '#skills',
+					name: 'Навыки',
+					title: 'Навыки'
 				}
-			]
+			],
+			contacts: [
+				{
+					url: 'mailto: al-programmist@yandex.ru',
+					name: 'al-programmist@yandex.ru',
+					title: 'Электронная почта'
+				},
+				{
+					url: 'tel: +79149374741',
+					name: '+7 (914) 937-47-41',
+					title: 'Телефон'
+				},
+				{
+					url: '#',
+					name: 'г. Владимир',
+					title: 'Город'
+				}
+			],
 		},
-
-		share: {
-			caption: 'Поделиться:',
-			list: ['fb', 'tw', 'vk', 'ok'],
-		},
-
-		home: {
-			title: 'гид&nbsp;по <br><span class="for-desktop">бережному</span><span class="for-devices">общению</span>',
-			read: 'Читать',
-		},
-
-		modal: {
-			close: 'Закрыть',
-		},
+		share: [
+			{
+				name: 'fb',
+				url: 'https://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>&t=<?php the_title(); ?>',
+				title: 'facebook',
+				icon: 'fb'
+			},
+			{
+				name: 'vk',
+				url: 'https://vk.com/share.php?url=<?php the_permalink(); ?>',
+				title: 'vkontakte',
+				icon: 'vk'
+			},
+			{
+				name: 'tg',
+				url: 'https://t.me/share/url?url=<?php the_permalink(); ?>&text=<?php the_title(); ?>',
+				title: 'telegram',
+				icon: 'tg'
+			},
+		],
 	};
 
 script.
