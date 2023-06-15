@@ -63,7 +63,9 @@ svg {
 figure,
 picture {
 	display: inline-block;
+	vertical-align: top;
 	margin: 0;
+	font-size: 0;
 	line-height: 0;
 
 	img {

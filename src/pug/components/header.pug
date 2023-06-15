@@ -1,44 +1,12 @@
 header.header
 	.container
-		h1.visually-hidden Страница тестового задания кандидата на должность frontend-разработчика
-		.row
-			.intro
-				a.header__logo.brand-logo(href=data.header.logo.src title=data.header.logo.title)
-				h2.intro__header.intro-header
-					span.intro-header__name Александр Гузяев,
-					span.intro-header__description Frontend-разработчик
-					p.intro__description
-						| Как разработчик, я высоко ценю способность воплотить видение дизайнера в жизнь, что считаю очень полезным для бизнеса. Я получаю огромное удовлетворение, наблюдая за работой от идеи до дизайна, особенно когда она появляется в руках пользователя. Я считаю, что ориентированные на пользователя решения являются наиболее ценными цифровыми ресурсами будущего.
-			nav.navigation
-				.navigation__menu.menu
-					ul.menu__inner.navigation__list
-						each object, key in data.header.menu
-							li.menu__item
-								a.menu__link.js-to-anchor(
-									href=object.url
-									data-link=key
-									title=object.title
-								)
-									!= object.name
-
-				.navigation__contacts.contacts
-					ul.contacts__list
-						each object, key in data.header.contacts
-							li.contacts__item
-								a.contacts__link(
-									href=object.url
-									title=object.title
-								)
-									!= object.name
-
-					ul.contacts__socials.share
-						each object, key in data.share
-							li.share__item
-								a.share__link(
-									href=object.url
-									title=object.title
-									rel="nofollow"
-									target="_blank"
-								)
-									span.visually-hidden #{object.title}
-										+svg(object.icon)
+		nav.navigation.menu
+			ul.navigation__list
+				each object, key in data.header.menu
+					li.menu__item
+						a.menu__link.js-to-anchor(
+							href=object.url
+							data-link=key
+							title=object.title
+						)
+							!= object.name

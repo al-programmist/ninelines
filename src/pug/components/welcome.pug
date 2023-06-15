@@ -1,0 +1,51 @@
+section.welcome
+	.container
+		.row
+			.welcome__intro.intro
+				.intro__image
+					+lazyPicture(
+						{
+							src: `${baseDir}images/photo.jpg`,
+							alt: '',
+							appear: false,
+						},
+						[
+							{
+								srcset: `${baseDir}images/photo.jpg 1x, ${baseDir}images/photo.jpg 2x`,
+								media: '(min-width: 320px)',
+								type: 'image/jpeg'
+							},
+							{
+								srcset: `${baseDir}images/photo.webp 1x, ${baseDir}images/photo.webp 2x`,
+								media: '(min-width: 320px)',
+								type: 'image/webp'
+							},
+						]
+					)
+				h1.intro__header.candidate
+					span.candiadate__name Александр Гузяев,
+					span.candidate__caption Frontend-разработчик
+				p.intro__descripton
+					| Как разработчик, я высоко ценю способность воплотить видение дизайнера в жизнь, что считаю очень полезным для бизнеса. Я получаю огромное удовлетворение, наблюдая за работой от идеи до дизайна, особенно когда она появляется в руках пользователя. Я считаю, что ориентированные на пользователя решения являются наиболее ценными цифровыми ресурсами будущего.
+
+			.welcome__contacts.contacts
+				ul.contacts__list
+					each object, key in data.contacts
+						li.contacts__item
+							a.contacts__link(
+								href=object.url
+								title=object.title
+							)
+								!= object.name
+
+				ul.contacts__socials.share
+					each object, key in data.share
+						li.share__item
+							a.share__link(
+								href=object.url
+								title=object.title
+								rel="nofollow"
+								target="_blank"
+							)
+								span.visually-hidden #{object.title}
+								+svg(object.icon)
