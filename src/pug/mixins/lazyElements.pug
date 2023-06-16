@@ -43,8 +43,7 @@ mixin lazyPicture(data, source)
 				)
 
 		//- fallback для работы всего элемента picture в связке с lozad
-		source(srcset=data.src)
-
+		img(src=data.src alt=data.alt)
 		if data.appear
 			noscript
 				img(src=data.src alt=data.alt)
