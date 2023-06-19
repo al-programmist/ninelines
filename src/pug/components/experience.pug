@@ -1,26 +1,44 @@
-section.experience
+section.experience#experience
 	.container
 		.row
 			h2.experience__header.visually-hidden Опыт работы и образование кандидата
 			section.experience__terms.section.work
 				h3.section__header Опыт работы
 				.work__inner.works
-					article.works__article.work
-						header
-							.work__period Июль 2019
-							h4.work__header.caption Freelance Designer
-								span.caption__icon
-						.work__description.company
-							h5.company__header
-								span.company__icon
-								span.company__name J Creative Solutions
-								span.company__location Digital agency in Minsk, Belarus
-							.company__description
-								p Improved website performance and user experience of the biggest online bookstore OZ in Belarus, being a part of the marketing team,
-								p I interpreted Google Analytics data to IT, content and marketing colleagues. Advised on tech and content optimization strategy, automated processes, provided reports, increased organic traffic up to 150%.
-							.company__links.sources
-								a.sources__link(href="#" title="Agency projects") Agency projects
+					each work in data.work
+						article.works__article.work
+							header
+								.work__period #{work.period}
+								h4.work__header.caption #{work.name}
+									span.caption__icon
+										+svg(work.icon)
+							.work__description.company
+								h5.company__header
+									span.company__icon
+										+svg(work.company.icon)
+									span.company__name #{work.company.name}
+									span.company__location #{work.company.location}
+								.company__description
+									p #{work.description}
+
+								.company__links.sources
+									each link in work.links
+										a.sources__link(href=link.href title=link.title) #{link.caption}
 
 			.experience__animation.area
 			section.experience__education.section.education
 				h3.section__header Образование
+				ul.education__list
+					each education in data.education
+						li.education__item
+							.speciality
+								span.education__icon
+									+svg(education.icon)
+								h4.speciality__header #{education.name}
+								.speciality__trainers.trainers
+									each trainer in education.trainers
+										.trainer__item.trainer
+											span.trainer__name #{trainer.name}
+											span.trainer__period #{trainer.period}
+											if trainer.result
+												span.trainer__result #{trainer.result}

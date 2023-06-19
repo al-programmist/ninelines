@@ -1,0 +1,9 @@
+section.section.skills#skills
+	.container
+		h2.section__header.skills__header Навыки
+		ul.skills__list.row
+			each skill in data.skills
+				li.skills__item.skill
+					h3.skill__header #{skill.name}
+					p.skill__descrioption #{skill.description}
+		.skills__outro
