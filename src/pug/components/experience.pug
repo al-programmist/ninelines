@@ -2,20 +2,21 @@ section.experience#experience
 	.container
 		.row
 			h2.experience__header.visually-hidden Опыт работы и образование кандидата
-			section.experience__terms.section.work
+			section.experience__terms.section
 				h3.section__header Опыт работы
-				.work__inner.works
+				.experience__inner.works
 					each work in data.work
 						article.works__article.work
 							header
 								.work__period #{work.period}
 								h4.work__header.caption #{work.name}
-									span.caption__icon
+									span(class=`caption__icon sprite-${work.icon} icon`)
 										+svg(work.icon)
 							.work__description.company
 								h5.company__header
-									span.company__icon
-										+svg(work.company.icon)
+									if (work.company.icon !== false)
+										span(class=`company__icon sprite-${work.company.icon} icon`)
+											+svg(work.company.icon)
 									span.company__name #{work.company.name}
 									span.company__location #{work.company.location}
 								.company__description
@@ -32,7 +33,7 @@ section.experience#experience
 					each education in data.education
 						li.education__item
 							.speciality
-								span.education__icon
+								span(class=`education__icon sprite-${education.icon} icon`)
 									+svg(education.icon)
 								h4.speciality__header #{education.name}
 								.speciality__trainers.trainers

@@ -1,7 +1,8 @@
 header.header
 	.container
-		nav.navigation.menu
-			ul.navigation__list
+		nav.navigation.menu.burger
+			button.navigation__button.burger__button.for-devices(type="button")
+			ul.navigation__list.row
 				each object, key in data.header.menu
 					li.menu__item
 						a.menu__link.js-to-anchor(

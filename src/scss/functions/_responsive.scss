@@ -1,11 +1,11 @@
 // адаптивные стили через vw
 @function vw($value, $base: $laptop) {
-	@return $value / $base * 100vw;
+	@return calc(($value / $base) * 100vw);
 }
 
 // обычные пиксельные стили
 @function px($value, $base: $laptop) {
-	@return $value * ($laptop * 1px) / $base;
+	@return calc($value * ($laptop * 1px) / $base);
 }
 
 // vh - для адаптации стилей под высоту страницы

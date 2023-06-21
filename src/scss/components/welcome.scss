@@ -1,16 +1,110 @@
-// .welcome {
-// }
+.welcome {
+	padding-bottom: 15rem  /* 210/14 */;
+
+	&__inner {
+		position: relative;
+		justify-content: space-between;
+
+		&::after {
+			@include sprite("wave_0");
+
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 7.857rem  /* 110/14 */;
+			z-index: 0;
+			display: block;
+			min-height: 25rem  /* 350/14 */;
+			background-repeat: no-repeat;
+		}
+	}
+
+	&__intro {
+		flex-basis: 50%;
+	}
+
+	&__contacts {
+		flex-basis: 25%;
+		padding-top: 10px;
+	}
+
+	&__intro,
+	&__contacts {
+		flex-grow: 0;
+	}
+}
 
 .intro {
+	position: relative;
+
+	&::before {
+		@include sprite("wave_1");
+
+		content: "";
+		position: absolute;
+		right: 15rem  /* 210/14 */;
+		top: -7.857rem  /* -110/14 */;
+		width: 11.857rem  /* 166/14 */;
+		height: 3.643rem  /* 51/14 */;
+		mix-blend-mode: normal;
+	}
+
 	&__image {
+		@include sprite("logo");
+
 		overflow: hidden;
-		width: 80px;
-		background: $color-white $pictureFallback center center no-repeat;
+		width: 150px;
+		background-position: center center;
 		background-size: contain;
+		background-repeat: no-repeat;
+		background-color: $color-white;
 		aspect-ratio: 1;
 	}
 
 	&__header {
 		margin-top: 0;
+		font-size: 2.571rem  /* 36/14 */;
+		line-height: 3.571rem  /* 50/14 */;
+		color: $color-black;
+	}
+
+	&__descripton {
+		line-height: 1.429rem  /* 20/14 */;
+	}
+}
+
+.candidate {
+	&__caption,
+	&__name {
+		display: block;
+	}
+}
+
+.share {
+	display: flex;
+
+	&__item {
+		margin-right: 1.429rem  /* 20/14 */;
+		width: 25px;
+		aspect-ratio: 1;
+	}
+
+	&__icon {
+		aspect-ratio: 1;
+	}
+}
+
+.contacts {
+	&__item {
+		margin-top: 0;
+
+		&:not(:last-child) {
+			margin-bottom: 0.714rem;
+		}
+	}
+
+	&__list {
+		margin-bottom: 1.071rem  /* 15/14 */;
 	}
 }

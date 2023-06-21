@@ -1,2 +1,68 @@
-// .skills {
-// }
+.skills {
+	color: $color-black;
+	background-color: $color-white;
+
+	&__list {
+		position: relative;
+
+		&::before {
+			@include sprite("wave_2");
+
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: -3.071rem  /* -43/14 */;
+			z-index: 0;
+			display: block;
+			min-height: 22.857rem  /* 320/14 */;
+		}
+	}
+
+	&__item {
+		flex-basis: 25%;
+		padding-right: 0.714rem;
+		padding-left: 0.714rem;
+
+		&:first-child {
+			padding-left: 0;
+		}
+
+		&:last-child {
+			padding-right: 0;
+		}
+	}
+
+	&__header {
+		margin-bottom: 2.143rem  /* 30/14 */;
+	}
+
+	&__outro {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding-top: 4.286rem  /* 60/14 */;
+		padding-bottom: 4.286rem  /* 60/14 */;
+		width: 100%;
+
+		&::before {
+			@include sprite("hands_like");
+
+			content: "";
+			display: block;
+		}
+	}
+}
+
+.skill {
+	&__header {
+		margin-top: 0;
+		margin-bottom: 6px;
+		font-size: 1rem  /* 14/14 */;
+		line-height: 1.143rem  /* 16/14 */;
+	}
+
+	&__description {
+		line-height: 1.429rem  /* 20/14 */;
+	}
+}
