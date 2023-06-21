@@ -16,6 +16,21 @@
 			z-index: 0;
 			display: block;
 			min-height: 22.857rem  /* 320/14 */;
+
+			@include desktop {
+				width: 100%;
+			}
+
+			@include devices {
+				bottom: 0;
+				width: 100%;
+				height: calc(100% + 7.857rem  /* 110/14 */);
+				min-height: 0;
+			}
+		}
+
+		@include devices {
+			flex-direction: column;
 		}
 	}
 
@@ -24,12 +39,23 @@
 		padding-right: 0.714rem;
 		padding-left: 0.714rem;
 
+		&:not(:last-child) {
+			@include devices {
+				padding-bottom: 1.429rem  /* 20/14 */;
+			}
+		}
+
 		&:first-child {
 			padding-left: 0;
 		}
 
 		&:last-child {
 			padding-right: 0;
+		}
+
+		@include devices {
+			padding-right: 0;
+			padding-left: 0;
 		}
 	}
 
@@ -50,6 +76,15 @@
 
 			content: "";
 			display: block;
+
+			@include devices {
+				transform: scale(0.9);
+			}
+		}
+
+		@include devices {
+			padding-top: 3.571rem  /* 50/14 */;
+			padding-bottom: 0;
 		}
 	}
 }

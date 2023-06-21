@@ -1,8 +1,8 @@
 .header {
-	position: absolute;
+	position: fixed;
 	left: 0;
 	right: 0;
-	top: 60px;
+	top: 0;
 	z-index: 2100;
 	font-weight: 700;
 	font-size: 1.286rem  /* 18/14 */;
@@ -83,19 +83,46 @@
 }
 
 .navigation {
+	display: flex;
+
 	&__list {
+		display: inline-flex;
+		flex-basis: 25%;
 		align-items: center;
-		justify-content: flex-end;
-		min-height: 3.571rem  /* 50/14 */;
+		justify-content: flex-start;
+		margin-left: auto;
+		min-height: 170px;
+
+		@include devices {
+			flex-basis: 100%;
+			flex-direction: column;
+			align-items: flex-start;
+			margin-left: 0;
+			min-height: 0;
+		}
+
+		@media all and (max-width: 1115px) {
+			justify-content: space-between;
+		}
 	}
 }
 
 .menu {
 	&__item {
-		flex-basis: 74px;
-
 		&:not(:last-child) {
 			margin-right: 2.286rem  /* 32/14 */;
+
+			@media all and (max-width: 1115px) {
+				margin-right: 0;
+			}
 		}
+	}
+}
+
+.burger {
+	@include devices {
+		display: none;
+		align-items: flex-start;
+		background-color: $color-white;
 	}
 }
