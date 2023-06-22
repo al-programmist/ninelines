@@ -13,7 +13,7 @@ section.experience#experience
 									span(class=`caption__icon sprite-${work.icon} icon`)
 										+svg(work.icon)
 							.work__description.company
-								h5.company__header
+								h5.company__header(class={'company__header--no-icon': work.company.icon === false})
 									if (work.company.icon !== false)
 										span(class=`company__icon sprite-${work.company.icon} icon`)
 											+svg(work.company.icon)

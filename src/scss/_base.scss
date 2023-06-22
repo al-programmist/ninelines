@@ -192,6 +192,11 @@ iframe {
 		line-height: 2.071rem  /* 29/14 */;
 		color: $color-black;
 		background-color: $color-white;
+
+		@include mobile {
+			font-size: 1.429rem  /* 20/14 */;
+			line-height: 1.643rem  /* 23/14 */;
+		}
 	}
 }
 

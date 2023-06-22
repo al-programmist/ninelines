@@ -21,6 +21,10 @@
 			background-repeat: no-repeat;
 			aspect-ratio: 4;
 
+			@include retina {
+				background-image: url("../images/sprites/png/wave_2@2x.png");
+			}
+
 			@include devices {
 				bottom: calc(100% + 50px);
 				height: auto;
@@ -63,16 +67,20 @@
 		justify-content: center;
 		padding-top: 4.286rem  /* 60/14 */;
 		padding-bottom: 4.286rem  /* 60/14 */;
-		width: 100%;
 
 		&::before {
-			@include sprite("hands_like");
-
 			content: "";
 			display: block;
+			width: 100%;
+			max-width: 512px;
+			background-image: url("../images/sprites/png/hands_like.png");
+			background-position: center center;
+			background-size: contain;
+			background-repeat: no-repeat;
+			aspect-ratio: 1.5;
 
-			@include devices {
-				transform: scale(0.9);
+			@include retina {
+				background-image: url("../images/sprites/png/hands_like@2x.png");
 			}
 		}
 
@@ -105,6 +113,12 @@
 		&__list {
 			&::before {
 				background-image: url("../images/wave_2.svg");
+			}
+		}
+
+		&__outro {
+			&::before {
+				background-image: url("../images/hands_like.svg");
 			}
 		}
 	}
