@@ -155,6 +155,8 @@ iframe {
 	}
 
 	@include desktop-xl {
+		padding-right: 0;
+		padding-left: 0;
 		max-width: px(1140, $base: $laptop);
 	}
 }
@@ -166,11 +168,19 @@ iframe {
 	min-height: 100vh; // fallback
 	// stylelint-disable-next-line
 	min-height: var(--vh);
+
+	@include devices {
+		padding-top: 5.714rem  /* 80/14 */;
+	}
 }
 
 .row {
 	display: flex;
 	flex-flow: row nowrap;
+
+	@include devices {
+		flex-wrap: wrap;
+	}
 }
 
 .section {

@@ -1,4 +1,5 @@
 .skills {
+	padding-top: 13rem  /* 182/14 */;
 	color: $color-black;
 	background-color: $color-white;
 
@@ -6,31 +7,26 @@
 		position: relative;
 
 		&::before {
-			@include sprite("wave_2");
-
 			content: "";
 			position: absolute;
 			left: 0;
 			right: 0;
-			bottom: -3.071rem  /* -43/14 */;
+			bottom: 0;
 			z-index: 0;
 			display: block;
-			min-height: 22.857rem  /* 320/14 */;
-
-			@include desktop {
-				width: 100%;
-			}
+			width: 100%;
+			background-image: url("../images/sprites/png/wave_2.png");
+			background-position: 0 0;
+			background-size: cover;
+			background-repeat: no-repeat;
+			aspect-ratio: 4;
 
 			@include devices {
-				bottom: 0;
-				width: 100%;
-				height: calc(100% + 7.857rem  /* 110/14 */);
-				min-height: 0;
+				bottom: calc(100% + 50px);
+				height: auto;
+				background-position: -40px 0;
+				aspect-ratio: 6;
 			}
-		}
-
-		@include devices {
-			flex-direction: column;
 		}
 	}
 
@@ -39,23 +35,21 @@
 		padding-right: 0.714rem;
 		padding-left: 0.714rem;
 
-		&:not(:last-child) {
-			@include devices {
-				padding-bottom: 1.429rem  /* 20/14 */;
-			}
-		}
-
 		&:first-child {
 			padding-left: 0;
 		}
 
 		&:last-child {
 			padding-right: 0;
+
+			@include devices {
+				padding: 0;
+			}
 		}
 
 		@include devices {
-			padding-right: 0;
-			padding-left: 0;
+			flex-basis: 100%;
+			padding: 0 0 1.429rem  /* 20/14 */;
 		}
 	}
 
@@ -87,6 +81,10 @@
 			padding-bottom: 0;
 		}
 	}
+
+	@include devices {
+		padding-top: 80px;
+	}
 }
 
 .skill {
@@ -99,5 +97,15 @@
 
 	&__description {
 		line-height: 1.429rem  /* 20/14 */;
+	}
+}
+
+:root {
+	.skills {
+		&__list {
+			&::before {
+				background-image: url("../images/wave_2.svg");
+			}
+		}
 	}
 }

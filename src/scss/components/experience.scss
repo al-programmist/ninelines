@@ -1,6 +1,5 @@
 .experience {
-	padding-top: 0;
-	padding-bottom: 13.571rem  /* 190/14 */;
+	padding-top: 15rem;
 
 	&__terms {
 		flex-basis: 50%;
@@ -14,14 +13,14 @@
 		flex-basis: 25%;
 
 		&::before {
-			@include sprite("boy_center");
+			// @include sprite("boy_center");
 
 			content: "";
 			display: block;
 
 			@include devices {
 				margin: 0 auto;
-				transform: scale(0.7);
+				transform: scale(0.9);
 			}
 		}
 
@@ -38,18 +37,57 @@
 
 		@include devices {
 			flex-basis: 100%;
+			flex-flow: row wrap;
 			align-items: flex-start;
 		}
 	}
 
 	&__wrapper {
-		@include devices {
-			flex-wrap: wrap;
+		&::before {
+			content: "";
+			position: absolute;
+			bottom: 100%;
+			z-index: 0;
+			display: block;
+			width: 100%;
+			background-image: url("../images/sprites/png/wave_0.png");
+			background-position: 0 0;
+			background-size: cover;
+			background-repeat: no-repeat;
+
+			@include devices {
+				left: 20px;
+				right: 20px;
+				width: calc(100% - 40px);
+				aspect-ratio: 4.1;
+			}
+
+			@include desktop {
+				left: 40px;
+				right: 40px;
+				aspect-ratio: 3.8;
+			}
+
+			@include desktop-xl {
+				left: 0;
+				right: 0;
+				aspect-ratio: 3.2;
+			}
 		}
 	}
 
 	@include devices {
-		padding-bottom: 5.714rem  /* 80/14 */;
+		padding-top: 60px;
+	}
+}
+
+:root {
+	.experience {
+		&__wrapper {
+			&::before {
+				background-image: url("../images/wave_0.svg");
+			}
+		}
 	}
 }
 
@@ -156,8 +194,8 @@
 	&__list {
 		@include devices {
 			display: flex;
-			flex-wrap: wrap;
-			width: 100%;
+			flex-basis: 100%;
+			flex-flow: row wrap;
 		}
 	}
 }
@@ -175,7 +213,7 @@
 	}
 
 	@include devices {
-		margin: auto;
+		margin: 0 auto;
 	}
 }
 
